@@ -111,7 +111,7 @@ SUPPORTED_BOARDS = (
         name="imx8mm_evk",
         arch=BoardArch.AARCH64,
         gcc_flags="GCC_CPU=cortex-a53",
-        loader_link_address=0x41000000,
+        loader_link_address=0x50000000,
         kernel_options = {
             "KernelPlatform": "imx8mm-evk",
             "KernelIsMCS": True,
@@ -123,7 +123,7 @@ SUPPORTED_BOARDS = (
         name="imx8mm_evk_hyp",
         arch=BoardArch.AARCH64,
         gcc_flags="GCC_CPU=cortex-a53",
-        loader_link_address=0x41000000,
+        loader_link_address=0x50000000,
         kernel_options = {
             "KernelPlatform": "imx8mm-evk",
             "KernelIsMCS": True,
@@ -136,7 +136,7 @@ SUPPORTED_BOARDS = (
         name="imx8mm_evk_2_cores",
         arch=BoardArch.AARCH64,
         gcc_flags="GCC_CPU=cortex-a53",
-        loader_link_address=0x41000000,
+        loader_link_address=0x50000000,
         kernel_options = {
             "KernelPlatform": "imx8mm-evk",
             "KernelIsMCS": True,
@@ -149,7 +149,7 @@ SUPPORTED_BOARDS = (
         name="imx8mm_evk_4_cores",
         arch=BoardArch.AARCH64,
         gcc_flags="GCC_CPU=cortex-a53",
-        loader_link_address=0x41000000,
+        loader_link_address=0x50000000,
         kernel_options = {
             "KernelPlatform": "imx8mm-evk",
             "KernelIsMCS": True,
