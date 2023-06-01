@@ -701,11 +701,17 @@ def build_system(
         x86_machine,
     )
 
-    reserved_base = available_memory.allocate(reserved_size)
-    initial_task_phys_base = available_memory.allocate(initial_task_size)
-    # The kernel relies on this ordering. The previous allocation functions do *NOT* enforce
-    # this though, should fix that.
-    assert reserved_base < initial_task_phys_base
+    # On x86 the kernel loads the inittask as a multiboot module and
+    # copies it immediately after itself. We need to swap the
+    # allocation order to match the kernel.
+    if kernel_config.arch == KernelArch.X86_64:
+        initial_task_phys_base = available_memory.allocate(initial_task_size)
+        reserved_base = available_memory.allocate(reserved_size)
+        assert initial_task_phys_base < reserved_base
+    else:
+        reserved_base = available_memory.allocate(reserved_size)
+        initial_task_phys_base = available_memory.allocate(initial_task_size)
+        assert reserved_base < initial_task_phys_base
 
     initial_task_phys_region = MemoryRegion(initial_task_phys_base, initial_task_phys_base + initial_task_size)
     initial_task_virt_region = virt_mem_region_from_elf(monitor_elf, kernel_config.minimum_page_size)
